@@ -1,19 +1,17 @@
-import { ReadonlySignal } from "@preact/signals";
-
-
-
+import { memo } from "react";
 
 interface SquareProps {
-  squares: ReadonlySignal<(string | null)[]>;
+  value: string | null;
   onClick: () => void;
-  id: number;
 }
 
-export function Square({ squares, onClick, id }: SquareProps): JSX.Element {
-  console.log(squares.value[id]);
+const Square = memo(function({ value, onClick }: SquareProps): JSX.Element {
+  // console.log(value);
   return (
     <button className="square" onClick={onClick}>
-      {squares.value.squares[id].value}
+      {value}
     </button>
   );
-}
+})
+
+export { Square };
